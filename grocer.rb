@@ -1,20 +1,37 @@
+require "pry"
+
 def find_item_by_name_in_collection(name, collection)
-  # Implement me first!
-  #
-  # Consult README for inputs and outputs
+  
+ index = 0 
+ while index < collection.length  
+   
+   if collection[index][:item] == name
+     return collection[index]
+   
+   end   
+   index += 1
+ end 
 end
 
 def consolidate_cart(cart)
-  # Consult README for inputs and outputs
-  #
-  # REMEMBER: This returns a new Array that represents the cart. Don't merely
-  # change `cart` (i.e. mutate) it. It's easier to return a new thing.
+ 
+  new_cart = []
+  counter = 0 
+  while counter < cart.length
+  duplicate = find_item_by_name_in_collection(cart[counter][:item],new_cart)
+  if duplicate
+    duplicate[:count] += 1
+  else
+    cart[counter][:count] = 1
+    new_cart << cart[counter]
+  end 
+  counter += 1 
+  end 
+  new_cart
 end
 
 def apply_coupons(cart, coupons)
-  # Consult README for inputs and outputs
-  #
-  # REMEMBER: This method **should** update cart
+  
 end
 
 def apply_clearance(cart)
@@ -34,3 +51,4 @@ def checkout(cart, coupons)
   # BEFORE it begins the work of calculating the total (or else you might have
   # some irritated customers
 end
+
